@@ -4,9 +4,9 @@ $(function() {
   var entries = [],
       bloggers = [];
 
-  $.get('http://flatiron-magazine-cpk.herokuapp.com/entries.json', function(data) {
-    createEntries(data);
-  }, 'json');
+  // $.get('http://flatiron-magazine-cpk.herokuapp.com/entries.json', function(data) {
+  //   createEntries(data);
+  // }, 'json');
 
   $.get('http://flatiron-magazine-cpk.herokuapp.com/bloggers.json', function(data) {
     createBloggers(data);
