@@ -20,7 +20,8 @@ $(function() {
 
   function createBloggers(jsonBloggers) {
     $.map(jsonBloggers, function(jsonBlogger, i) {
-      entries.push(new Blogger(jsonBlogger));
+      var blogger = new Blogger(jsonBlogger);
+      $('body').append(HandlebarsTemplates['bloggers/blogger_show'](blogger));
     });
   }
 

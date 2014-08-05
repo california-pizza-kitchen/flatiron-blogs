@@ -5,9 +5,13 @@ function Blogger(json) {
   this.blogUrl = json["blog_url"];
   this.magazineUrl = json["url"];
   this.jsonUrl = json["_self"];
-  this.entries = json["entries"];
+  this.entries = this.makeEntries(json["entries"]);
+  this.lastPublishedAt = json["last_published_at"];
 }
 
-Blogger.prototype = {
-  constructor: Blogger
+Blogger.prototype.makeEntries = function(jsonEntries) {
+  var entries = $.map(jsonEntries, function(jsonEntry, i) {
+    return new Entry(jsonEntry);
+  });
+  return entries;
 }

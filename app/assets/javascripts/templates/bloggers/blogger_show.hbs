@@ -1,0 +1,13 @@
+<div class="blogger">
+  <h1>NAME {{name}}</h1>
+  <h2>SCHOOL SESSION {{schoolSession}}</h2>
+  <h3>NUMBER OF ENTRIES {{numberOfEntries}}</h3>
+  <h3>BLOG URL {{blogUrl}}</h3>
+  <div class="blogger-entries">
+    {{#each entries}}
+      <h4>Title: <a href="{{jsonUrl}}">{{title}}</a></h4>
+      <h5>Originally Published: {{publishedDate}} at <a href="{{blogUrl}}">{{blogUrl}}</a></h5>
+      <p>{{summary}}</p>
+    {{/each}}
+  </div>
+</div>
