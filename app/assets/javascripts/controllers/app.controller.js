@@ -4,24 +4,28 @@ $(function() {
   var entries = [],
       bloggers = [];
 
-  // $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries', function(data) {
-  //   createEntries(data);
-  // }, 'json');
-
-  $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/bloggers', function(data) {
-    createBloggers(data);
+  $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries', function(data) {
+    createEntries(data);
   }, 'json');
 
+  // $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/bloggers', function(data) {
+  //   createBloggers(data);
+  // }, 'json');
+
   function createEntries(jsonEntries) {
+    var entry;
     $.map(jsonEntries, function(jsonEntry, i) {
-      entries.push(new Entry(jsonEntry));
+      entry = new Entry(jsonEntry);
+      entries.push(entry);
+      $('#page-content-wrapper').append(HandlebarsTemplates['entries/entry_show'](entry));
     });
   }
 
   function createBloggers(jsonBloggers) {
+    var blogger;
     $.map(jsonBloggers, function(jsonBlogger, i) {
-      var blogger = new Blogger(jsonBlogger);
-      $('body').append(HandlebarsTemplates['bloggers/blogger_show'](blogger));
+      blogger = new Blogger(jsonBlogger);
+      $('#page-content-wrapper').append(HandlebarsTemplates['bloggers/blogger_show'](blogger));
     });
   }
 

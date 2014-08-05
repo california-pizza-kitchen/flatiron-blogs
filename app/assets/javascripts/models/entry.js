@@ -10,7 +10,7 @@ function Entry(json) {
     this.blogger = new Blogger(json["blogger"]);
   }
   if (json["tags"]) {
-    this.tags = addTags(json["tags"]);
+    this.tags = this.addTags(json["tags"]);
   }
 }
 
