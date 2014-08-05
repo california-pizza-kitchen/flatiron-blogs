@@ -4,11 +4,11 @@ $(function() {
   var entries = [],
       bloggers = [];
 
-  // $.get('http://flatiron-magazine-cpk.herokuapp.com/entries.json', function(data) {
+  // $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries', function(data) {
   //   createEntries(data);
   // }, 'json');
 
-  $.get('http://flatiron-magazine-cpk.herokuapp.com/bloggers.json', function(data) {
+  $.get('http://flatiron-magazine-cpk.herokuapp.com/api/v0/bloggers', function(data) {
     createBloggers(data);
   }, 'json');
 

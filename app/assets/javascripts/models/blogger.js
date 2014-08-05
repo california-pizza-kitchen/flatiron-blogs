@@ -4,9 +4,11 @@ function Blogger(json) {
   this.numberOfEntries = json["number_of_entries"];
   this.blogUrl = json["blog_url"];
   this.magazineUrl = json["url"];
-  this.jsonUrl = json["_self"];
-  this.entries = this.makeEntries(json["entries"]);
   this.lastPublishedAt = json["last_published_at"];
+  this.jsonUrl = json["_self"];
+  if (json["entries"]) {
+    this.entries = this.makeEntries(json["entries"]);
+  }
 }
 
 Blogger.prototype.makeEntries = function(jsonEntries) {
