@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.pjax
 //= require bootstrap
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require_tree .
+
+$(function() {
+  $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]')
+});

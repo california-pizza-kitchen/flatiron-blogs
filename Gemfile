@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'handlebars_assets'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 # Use SCSS for stylesheets
@@ -57,3 +55,5 @@ end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem "airbrake"
+gem "pjax_rails"
+gem 'handlebars_assets'
