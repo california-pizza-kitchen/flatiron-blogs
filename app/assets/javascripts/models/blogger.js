@@ -6,6 +6,7 @@ function Blogger(json) {
   this.magazineUrl = json["url"];
   this.lastPublishedAt = json["last_published_at"];
   this.jsonUrl = json["_self"];
+  this.slug = json["slug"];
   if (json["entries"]) {
     this.entries = this.makeEntries(json["entries"]);
   }
