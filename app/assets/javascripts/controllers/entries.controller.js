@@ -12,6 +12,7 @@ function EntriesController() {
   this.threshold = 1000;
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries?limit=' + this.entriesToFetch;
   this.$sidebar = $(".sidebar-nav");
+  this.arrayOfSlugs = [];
 }
 
 EntriesController.prototype.initialize = function() {
@@ -44,10 +45,11 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
     entry = new Entry(jsonEntry);
     that.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
     that.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
-    console.log(entry);
+    that.arrayOfSlugs.push(entry.slug);
   });
   this.displayedEntries += jsonEntries.length;
   this.listenForScroll();
+  this.selectLinkBeingRead();
 }
 
 EntriesController.prototype.apiFetchUrl = function() {
@@ -58,28 +60,33 @@ EntriesController.prototype.apiFetchUrl = function() {
   return url;
 }
 
-EntriesController.prototype.highlightSelectedLink = function() {
-  
+EntriesController.prototype.selectLinkBeingRead = function() {
+  var that = this;
+
+  $( window ).scroll(function() {
+    var $windowPos = $( window ).scrollTop(),
+        $windowHeight = $( window ).height(),
+        $documentHeight = $( document ).height();
+
+    for ( var i = 0; i < that.arrayOfSlugs.length; i++ ) {
+      var slug = that.arrayOfSlugs[i],
+          $divPos = $( "#" + slug ).offset().top - 60,
+          $divHeight = $( "#" + slug ).height();
+      if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
+        $( "a[href='#" + slug + "']" ).addClass( "nav-active" );
+      } else {
+        $( "a[href='#" + slug + "']" ).removeClass( "nav-active" );
+      }
+    }
+
+    if ( $windowPos + $windowHeight === $documentHeight ) {
+      if ( !$( ".sidebar-nav li:last-child a" ).hasClass( "nav-active" ) ) {
+        var $highlightedSlug = $( ".nav-active" ).attr( "href" );
+        $( "a[href='#" + $highlightedSlug + "']" ).removeClass( "nav-active" );
+        $( ".sidebar-nav li:last-child a" ).addClass( "nav-active" );
+      }
+    }
+  });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
