@@ -73,10 +73,7 @@ EntriesController.prototype.selectLinkBeingRead = function() {
           $divPos = $( "#" + slug ).offset().top - 60,
           $divHeight = $( "#" + slug ).height();
       if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
-        // $("a[href='#testing-rails-jbuilder-json-apis-with-rspec']").addClass("nav-active");
         $( "a[href='#" + slug + "']" ).addClass( "nav-active" );
-        console.log("You are reading " + slug);
-        console.log($( "a[href='#" + slug + "']" ));
       } else {
         $( "a[href='#" + slug + "']" ).removeClass( "nav-active" );
       }
