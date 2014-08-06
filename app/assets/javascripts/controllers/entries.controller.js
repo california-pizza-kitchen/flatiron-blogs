@@ -70,21 +70,23 @@ EntriesController.prototype.selectLinkBeingRead = function() {
 
     for ( var i = 0; i < that.arrayOfSlugs.length; i++ ) {
       var slug = that.arrayOfSlugs[i],
-          $divPos = $( "#" + slug ).offset().top,
+          $divPos = $( "#" + slug ).offset().top - 60,
           $divHeight = $( "#" + slug ).height();
       if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
-        $( "a[href='" + slug + "']" ).parent().addClass( "nav-active" );
-        console.log("You are reading" + slug)
+        // $("a[href='#testing-rails-jbuilder-json-apis-with-rspec']").addClass("nav-active");
+        $( "a[href='#" + slug + "']" ).addClass( "nav-active" );
+        console.log("You are reading " + slug);
+        console.log($( "a[href='#" + slug + "']" ));
       } else {
-        $( "a[href='" + slug + "']" ).parent().removeClass( "nav-active" );
+        $( "a[href='#" + slug + "']" ).removeClass( "nav-active" );
       }
     }
 
     if ( $windowPos + $windowHeight === $documentHeight ) {
-      if ( !$( ".sidebar-nav li:last-child" ).hasClass( "nav-active" ) ) {
-        var $highlightedSlug = $( ".nav-active" ).find( "a" ).attr( "href" );
-        $( "a[href='" + $highlightedSlug + "']" ).parent().removeClass( "nav-active" );
-        $( ".sidebar-nav li:last-child" ).addClass( "nav-active" );
+      if ( !$( ".sidebar-nav li:last-child a" ).hasClass( "nav-active" ) ) {
+        var $highlightedSlug = $( ".nav-active" ).attr( "href" );
+        $( "a[href='#" + $highlightedSlug + "']" ).removeClass( "nav-active" );
+        $( ".sidebar-nav li:last-child a" ).addClass( "nav-active" );
       }
     }
   });
