@@ -3,14 +3,6 @@
   font-weight: bold;
 }
 
-h1.title:before { 
-  display: block; 
-  content: " "; 
-  margin-top: -50px; 
-  height: 60px; 
-  visibility: hidden; 
-}
-
 .navbar {
   margin-bottom: 0px;
 }
@@ -30,3 +22,11 @@ h1.title:before {
     background: white;
 }
 
+a {
+  color: #316072;
+
+  &:hover {
+    text-decoration: none;
+    color: #507292;
+  }
+}
