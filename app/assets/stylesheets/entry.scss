@@ -1,0 +1,47 @@
+.entry {
+
+  background-color: #ecf0f1;
+  margin-bottom: 30px;
+  padding: 7px;
+
+  .title {
+
+    &:before {
+      display: block;
+      content: " ";
+      margin-top: -30px;
+      height: 60px;
+      visibility: hidden;
+    }
+  }
+
+  .blogger-name {
+
+  }
+
+  .originally-published {
+
+  }
+
+  .content {
+
+  }
+
+  .tags {
+
+    margin-left: 20px;
+
+    h3 {
+
+    }
+
+    ul {
+
+      .tag {
+
+      }
+
+    }
+
+  }
+}
