@@ -1,10 +1,3 @@
-$(function() {
-
-  var entriesController = new EntriesController();
-  entriesController.initialize();
-
-});
-
 function EntriesController() {
   this.$pageContentWrapper = $('#page-content-wrapper');
   this.displayedEntries = 0;
@@ -13,6 +6,7 @@ function EntriesController() {
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries?limit=' + this.entriesToFetch;
   this.$sidebar = $(".sidebar-nav");
   this.arrayOfSlugs = [];
+  this.scrollEnabled = true;
 }
 
 EntriesController.prototype.initialize = function() {
@@ -34,22 +28,32 @@ EntriesController.prototype.listenForScroll = function() {
 EntriesController.prototype.fetchEntries = function() {
   var that = this;
   $.get(this.apiFetchUrl(), function(data) {
-    that.appendEntries(data);
+    if (data instanceof Array) {
+      that.appendEntries(data);
+    } else if (data instanceof Object) {
+      that.appendEntry(data);
+    }
   }, 'json');
 }
 
 EntriesController.prototype.appendEntries = function(jsonEntries) {
-  var that = this,
-      entry;
+  var that = this;
   $.map(jsonEntries, function(jsonEntry, i) {
-    entry = new Entry(jsonEntry);
-    that.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
-    that.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
-    that.arrayOfSlugs.push(entry.slug);
+    // console.log(jsonEntry);
+    that.appendEntry(jsonEntry);
   });
-  this.displayedEntries += jsonEntries.length;
-  this.listenForScroll();
-  this.selectLinkBeingRead();
+  if (this.scrollEnabled) {
+    this.listenForScroll();
+    this.selectLinkBeingRead();
+  }
+}
+
+EntriesController.prototype.appendEntry = function(jsonEntry) {
+  var entry = new Entry(jsonEntry);
+  this.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
+  this.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
+  this.arrayOfSlugs.push(entry.slug);
+  this.displayedEntries++;
 }
 
 EntriesController.prototype.apiFetchUrl = function() {
@@ -88,5 +92,3 @@ EntriesController.prototype.selectLinkBeingRead = function() {
     }
   });
 };
-
-

@@ -1,12 +1,15 @@
 <div class="entry" id="{{slug}}">
   <h1 class="title"><a href="{{magazineUrl}}">{{title}}</a></h1>
-  <h2 class="blogger-name">By: <a href="{{blogger.magazineUrl}}">{{blogger.name}}</a></h2>
-  <h4 class="originally-published">Originally Published: {{publishedDate}} at <a href="{{blogUrl}}">{{blogUrl}}</a></h4>
+  <h3 class="blogger-name">By: <a href="{{blogger.magazineUrl}}">{{blogger.name}}</a></h3>
+  <h4 class="originally-published">Originally Published <a href="{{blogUrl}}">here</a> at: {{publishedDate}}</h4>
   <p class="content">{{{content}}}</p>
 
-  <ul class="tags">
-    {{#each tags}}
-      <li class="tag">{{tag}}</li>
-    {{/each}}
-  </ul>
+  <div class="tags">
+    <h3>Tags:</h3>
+    <ul class="tags-list list-inline">
+      {{#each tags}}
+        <li class="tag well well-sm">{{tag}}</li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
