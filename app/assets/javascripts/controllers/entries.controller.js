@@ -73,18 +73,18 @@ EntriesController.prototype.selectLinkBeingRead = function() {
           $divPos = $( "#" + slug ).offset().top,
           $divHeight = $( "#" + slug ).height();
       if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
-        $( "a[href='" + slug + "']" ).addClass( "nav-active" );
+        $( "a[href='" + slug + "']" ).parent().addClass( "nav-active" );
         console.log("You are reading" + slug)
       } else {
-        $( "a[href='" + slug + "']" ).removeClass( "nav-active" );
+        $( "a[href='" + slug + "']" ).parent().removeClass( "nav-active" );
       }
     }
 
     if ( $windowPos + $windowHeight === $documentHeight ) {
-      if ( !$( ".sidebar-nav li:last-child a" ).hasClass( "nav-active" ) ) {
-        var $highlightedSlug = $( ".nav-active" ).attr( "href" );
-        $( "a[href='" + $highlightedSlug + "']" ).removeClass( "nav-active" );
-        $( ".sidebar-nav li:last-child a" ).addClass( "nav-active" );
+      if ( !$( ".sidebar-nav li:last-child" ).hasClass( "nav-active" ) ) {
+        var $highlightedSlug = $( ".nav-active" ).find( "a" ).attr( "href" );
+        $( "a[href='" + $highlightedSlug + "']" ).parent().removeClass( "nav-active" );
+        $( ".sidebar-nav li:last-child" ).addClass( "nav-active" );
       }
     }
   });
