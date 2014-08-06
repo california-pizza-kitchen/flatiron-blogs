@@ -11,6 +11,7 @@ function EntriesController() {
   this.entriesToFetch = 5;
   this.threshold = 1000;
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries?limit=' + this.entriesToFetch;
+  this.$sidebar = $(".sidebar-nav");
 }
 
 EntriesController.prototype.initialize = function() {
@@ -32,16 +33,18 @@ EntriesController.prototype.listenForScroll = function() {
 EntriesController.prototype.fetchEntries = function() {
   var that = this;
   $.get(this.apiFetchUrl(), function(data) {
-    that.addEntries(data);
+    that.appendEntries(data);
   }, 'json');
 }
 
-EntriesController.prototype.addEntries = function(jsonEntries) {
+EntriesController.prototype.appendEntries = function(jsonEntries) {
   var that = this,
       entry;
   $.map(jsonEntries, function(jsonEntry, i) {
     entry = new Entry(jsonEntry);
     that.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
+    that.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
+    console.log(entry);
   });
   this.displayedEntries += jsonEntries.length;
   this.listenForScroll();
@@ -54,3 +57,29 @@ EntriesController.prototype.apiFetchUrl = function() {
   }
   return url;
 }
+
+EntriesController.prototype.highlightSelectedLink = function() {
+  
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

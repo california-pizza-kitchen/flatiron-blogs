@@ -6,6 +6,7 @@ function Entry(json) {
   this.publishedDate = json["published_date"];
   this.content = json["content"];
   this.jsonUrl = json["_self"];
+  this.slug = json["slug"];
   if (json["blogger"]) {
     this.blogger = new Blogger(json["blogger"]);
   }
