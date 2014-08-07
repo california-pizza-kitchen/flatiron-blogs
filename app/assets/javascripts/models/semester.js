@@ -20,8 +20,8 @@ Semester.prototype.makeEntries = function(jsonEntries) {
 }
 
 Semester.prototype.makeBloggers = function(jsonBloggers) {
-  var bloggers = $.map(jsonBloggers, function(jsonEntry, i) {
-    return new Entry(jsonEntry);
+  var bloggers = $.map(jsonBloggers, function(jsonBlogger, i) {
+    return new Blogger(jsonBlogger);
   });
   return bloggers;
 }

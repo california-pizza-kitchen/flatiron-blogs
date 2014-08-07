@@ -15,16 +15,8 @@ EntriesController.prototype.initialize = function() {
   this.fetchSidebarEntries();
 }
 
-EntriesController.prototype.listenForScroll = function() {
-  var that = this,
-      distanceFromBottom;
-  $(window).scroll(function() {
-    distanceFromBottom = that.$pageContentWrapper.height() - window.pageYOffset;
-    if (distanceFromBottom < that.threshold) {
-      $(this).off('scroll');
-      that.fetchEntries();
-    }
-  });
+EntriesController.prototype.resetEntries = function() {
+  this.displayedEntries = 0;
 }
 
 EntriesController.prototype.fetchEntries = function() {
@@ -46,10 +38,8 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
   $.map(jsonEntries, function(jsonEntry, i) {
     that.appendEntry(jsonEntry);
   });
-  if (this.scrollEnabled) {
-    this.listenForScroll();
-    this.selectLinkBeingRead();
-  }
+  // Re-enable scroll listening
+  this.enableScroll();
 }
 
 EntriesController.prototype.appendEntry = function(jsonEntry) {
@@ -92,6 +82,19 @@ EntriesController.prototype.fetchNextSidebarEntriesApiUrl = function() {
   return url;
 }
 
+EntriesController.prototype.listenForScroll = function() {
+  var that = this,
+      distanceFromBottom;
+  $(window).scroll(function() {
+    distanceFromBottom = that.$pageContentWrapper.height() - window.pageYOffset;
+    if (distanceFromBottom < that.threshold) {
+      // Disable scroll listening for the duration of fetching and appending new data
+      that.disableScroll();
+      that.fetchEntries();
+    }
+  });
+}
+
 EntriesController.prototype.selectLinkBeingRead = function() {
   var that = this;
 
@@ -119,6 +122,13 @@ EntriesController.prototype.selectLinkBeingRead = function() {
       }
     }
   });
-};
+}
 
+EntriesController.prototype.enableScroll = function() {
+  this.listenForScroll();
+  this.selectLinkBeingRead();
+}
 
+EntriesController.prototype.disableScroll = function() {
+  $(window).off('scroll');
+}
