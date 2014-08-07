@@ -18,18 +18,18 @@
 //= require_tree ./templates
 //= require_tree .
 
-var entriesController,
-    //sidebarController,
+var sidebarController,
+    entriesController,
     semestersController,
     bloggersController;
 
 $(function() {
+  sidebarController = new SidebarController();
   entriesController = new EntriesController();
-  //sidebarController = new SidebarController();
   semestersController = new SemestersController();
   bloggersController = new BloggersController();
 
-  entriesController.initialize();
+  sidebarController.initialize();
 
   $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 });
