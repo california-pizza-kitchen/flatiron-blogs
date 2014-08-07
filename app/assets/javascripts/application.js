@@ -18,6 +18,18 @@
 //= require_tree ./templates
 //= require_tree .
 
+var entriesController,
+    //sidebarController,
+    semestersController,
+    bloggersController;
+
 $(function() {
+  entriesController = new EntriesController();
+  //sidebarController = new SidebarController();
+  semestersController = new SemestersController();
+  bloggersController = new BloggersController();
+
+  entriesController.initialize();
+
   $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 });
