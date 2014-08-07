@@ -77,18 +77,20 @@ EntriesController.prototype.selectLinkBeingRead = function() {
           $divPos = $( "#" + slug ).offset().top - 60,
           $divHeight = $( "#" + slug ).height();
       if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
-        $( "a[href='#" + slug + "']" ).addClass( "nav-active" );
+        $( "a[href='" + slug + "']" ).addClass( "nav-active" );
       } else {
-        $( "a[href='#" + slug + "']" ).removeClass( "nav-active" );
+        $( "a[href='" + slug + "']" ).removeClass( "nav-active" );
       }
     }
 
     if ( $windowPos + $windowHeight === $documentHeight ) {
       if ( !$( ".sidebar-nav li:last-child a" ).hasClass( "nav-active" ) ) {
         var $highlightedSlug = $( ".nav-active" ).attr( "href" );
-        $( "a[href='#" + $highlightedSlug + "']" ).removeClass( "nav-active" );
+        $( "a[href='" + $highlightedSlug + "']" ).removeClass( "nav-active" );
         $( ".sidebar-nav li:last-child a" ).addClass( "nav-active" );
       }
     }
   });
 };
+
+
