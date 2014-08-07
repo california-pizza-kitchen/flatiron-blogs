@@ -43,30 +43,13 @@ SidebarController.prototype.fetchNextEntriesApiUrl = function() {
 }
 
 SidebarController.prototype.selectEntryBeingRead = function() {
-  var that = this;
-
-  $( window ).scroll(function() {
-    var $windowPos = $( window ).scrollTop(),
-        $windowHeight = $( window ).height(),
-        $documentHeight = $( document ).height();
-
-    for ( var i = 0; i < that.arrayOfSlugs.length; i++ ) {
-      var slug = that.arrayOfSlugs[i],
-          $divPos = $( "#" + slug ).offset().top - 60,
-          $divHeight = $( "#" + slug ).height();
-      if ( $windowPos >= $divPos && $windowPos < ( $divPos + $divHeight ) ) {
-        $( "a[href='" + slug + "']" ).addClass( "nav-active" );
-      } else {
-        $( "a[href='" + slug + "']" ).removeClass( "nav-active" );
-      }
-    }
-
-    if ( $windowPos + $windowHeight === $documentHeight ) {
-      if ( !$( ".sidebar-nav li:last-child a" ).hasClass( "nav-active" ) ) {
-        var $highlightedSlug = $( ".nav-active" ).attr( "href" );
-        $( "a[href='" + $highlightedSlug + "']" ).removeClass( "nav-active" );
-        $( ".sidebar-nav li:last-child a" ).addClass( "nav-active" );
-      }
+  var sidebar = this.$sidebar,
+      slug;
+  $( '#page-content-wrapper' ).on('inview', 'div.entry', function(event, isInView) {
+    if (isInView) {
+      slug = $(this).attr('id');
+      sidebar.find('a').removeClass('nav-active');
+      sidebar.find('a[href="' + slug + '"]').addClass('nav-active');
     }
   });
 }
