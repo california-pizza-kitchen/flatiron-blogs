@@ -1,7 +1,7 @@
 <script type="text/javascript">
   var entriesController = new EntriesController();
-  entriesController.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries/' + "<%= @slug %>";
+  entriesController.initialize();
   entriesController.scrollEnabled = false;
   $( window ).off('scroll');
-  entriesController.fetchEntries();
+  entriesController.fetchEntry(<%= slug %>);
 </script>

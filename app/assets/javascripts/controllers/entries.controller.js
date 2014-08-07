@@ -2,15 +2,17 @@ function EntriesController() {
   this.$pageContentWrapper = $('#page-content-wrapper');
   this.displayedEntries = 0;
   this.entriesToFetch = 5;
+  this.displayedSidebarEntries = 0;
+  this.sidebarEntriesToFetch = 25;
   this.threshold = 1000;
-  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries?limit=' + this.entriesToFetch;
+  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries';
   this.$sidebar = $(".sidebar-nav");
   this.arrayOfSlugs = [];
   this.scrollEnabled = true;
 }
 
 EntriesController.prototype.initialize = function() {
-  this.fetchEntries();
+  this.fetchSidebarEntries();
 }
 
 EntriesController.prototype.listenForScroll = function() {
@@ -27,19 +29,21 @@ EntriesController.prototype.listenForScroll = function() {
 
 EntriesController.prototype.fetchEntries = function() {
   var that = this;
-  $.get(this.apiFetchUrl(), function(data) {
-    if (data instanceof Array) {
-      that.appendEntries(data);
-    } else if (data instanceof Object) {
-      that.appendEntry(data);
-    }
+  $.get(this.fetchNextEntriesApiUrl(), function(data) {
+    that.appendEntries(data);
   }, 'json');
+}
+
+EntriesController.prototype.fetchEntry = function(slug) {
+  var that = this;
+  $.get(this.baseApiUrl + '/' + slug, function(data) {
+    that.appendEntry(data);
+  });
 }
 
 EntriesController.prototype.appendEntries = function(jsonEntries) {
   var that = this;
   $.map(jsonEntries, function(jsonEntry, i) {
-    // console.log(jsonEntry);
     that.appendEntry(jsonEntry);
   });
   if (this.scrollEnabled) {
@@ -51,15 +55,39 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
 EntriesController.prototype.appendEntry = function(jsonEntry) {
   var entry = new Entry(jsonEntry);
   this.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
-  this.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
-  this.arrayOfSlugs.push(entry.slug);
   this.displayedEntries++;
 }
 
-EntriesController.prototype.apiFetchUrl = function() {
-  var url = this.baseApiUrl;
+EntriesController.prototype.fetchNextEntriesApiUrl = function() {
+  var url = this.baseApiUrl + '?limit=' + this.entriesToFetch;
   if (this.displayedEntries > 0)  {
     url += '&offset=' + this.displayedEntries;
+  }
+  return url;
+}
+
+EntriesController.prototype.fetchSidebarEntries = function() {
+  var that = this;
+  $.get(this.fetchNextSidebarEntriesApiUrl(), function(data) {
+    that.appendSidebarEntries(data);
+  });
+}
+
+EntriesController.prototype.appendSidebarEntries = function(jsonEntries) {
+  var that = this,
+      entry;
+  $.map(jsonEntries, function(jsonEntry, i) {
+    entry = new Entry(jsonEntry);
+    that.$sidebar.append(HandlebarsTemplates['entries/sidebar_entry'](entry));
+    that.arrayOfSlugs.push(entry.slug);
+    that.displayedSidebarEntries++;
+  });
+}
+
+EntriesController.prototype.fetchNextSidebarEntriesApiUrl = function() {
+  var url = this.baseApiUrl + '?concise=true&limit=' + this.sidebarEntriesToFetch;
+  if (this.displayedSidebarEntries > 0)  {
+    url += '&offset=' + this.displayedSidebarEntries;
   }
   return url;
 }
