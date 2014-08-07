@@ -1,5 +1,7 @@
 <script type="text/javascript">
-  var entriesController = new EntriesController();
-  entriesController.initialize();
-  entriesController.fetchEntries();
+  $(function () {
+    entriesController.enableScroll();
+    entriesController.resetEntries();
+    entriesController.fetchEntries();
+  });
 </script>

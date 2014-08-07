@@ -1,4 +1,6 @@
 <script type="text/javascript">
-  var semestersController = new SemestersController();
-  semestersController.fetchSemesters();
+  $(function() {
+    entriesController.disableScroll();
+    semestersController.fetchSemesters();
+  });
 </script>
