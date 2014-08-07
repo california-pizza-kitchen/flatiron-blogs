@@ -1,0 +1,10 @@
+<script type="text/javascript">
+  $(function() {
+    entriesController.disableScroll();
+    var semesterEntriesController = new EntriesController();
+    semesterEntriesController.baseApiUrl = "http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions/" + "<%= @slug %>" + "/entries";
+    semesterEntriesController.initialize();
+    semesterEntriesController.enableScroll();
+    semesterEntriesController.fetchEntries();
+  });
+</script>
