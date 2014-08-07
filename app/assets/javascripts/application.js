@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.pjax
+//= require jquery.inview.min
 //= require bootstrap
 //= require handlebars.runtime
 //= require_tree ./templates
