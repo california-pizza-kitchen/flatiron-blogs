@@ -1,15 +1,24 @@
 <div class="entry" id="{{slug}}">
-  <h1 class="title">{{title}}</h1>
-  <h3 class="blogger-name">By: <a href="{{blogger.blogUrl}}">{{blogger.name}}</a></h3>
-  <h4 class="originally-published">Originally published <a href="{{blogUrl}}">here</a> on {{formattedDate}}</h4>
+  <div class="info">
+    <h1 class="title">{{title}}</h1>
+      <h3 class="blogger-name">
+        <a href="{{blogger.blogUrl}}">{{blogger.name}}</a>
+      </h3>
+    <h4 class="published-date">
+      <span class="glyphicon glyphicon-calendar"></span>
+      {{formattedDateTime}}
+    </h4>
+  </div>
   <p class="content">{{{content}}}</p>
 
   <div class="tags">
-    <h3>Tags:</h3>
+    <h3>Tags</h3>
     <ul class="tags-list list-inline">
       {{#each tags}}
         <li class="tag well well-sm">{{tag}}</li>
       {{/each}}
     </ul>
   </div>
+
+  <h4 class="originally-published">Originally published here: <a href="{{blogUrl}}">{{blogUrl}}</a></h5>
 </div>

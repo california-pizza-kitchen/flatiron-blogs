@@ -22,6 +22,10 @@ Entry.prototype.addTags = function(jsonTags) {
   return tags;
 }
 
-Entry.prototype.formattedDate = function() {
-  return this.publishedDate.toLocaleDateString();
+Entry.prototype.formattedDateTime = function() {
+  var hours = this.publishedDate.getHours() % 12,
+      minutes = this.publishedDate.getMinutes(),
+      amPm = this.publishedDate.getHours() < 12 ? "AM" : "PM";
+  hours = hours === 0 ? 12 : hours;
+  return hours + ":" + minutes + " " + amPm + ", " + this.publishedDate.toLocaleDateString();
 }

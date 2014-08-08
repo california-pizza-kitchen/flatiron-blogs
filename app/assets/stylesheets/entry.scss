@@ -4,12 +4,20 @@
   margin-bottom: 30px;
   padding: 7px;
 
-  .title {
+  .info {
 
-  }
+    .title {
 
-  .blogger-name {
+    }
 
+    .blogger-name {
+      display: inline;
+    }
+
+    .published-date {
+      display: inline;
+      margin-left: 20px;
+    }
   }
 
   .originally-published {
@@ -17,18 +25,20 @@
   }
 
   .content {
-
+    margin-top: 35px;
   }
 
   .tags {
 
-    margin-left: 20px;
+    margin-top: 35px;
 
     h3 {
 
     }
 
     ul {
+
+    margin-left: 20px;
 
       .tag {
 
