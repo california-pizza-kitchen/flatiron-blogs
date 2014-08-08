@@ -1,5 +1,4 @@
 #page-content-wrapper {
-  padding-top: 0px;
   max-width: 980px;
   background-color: white;
 }
@@ -71,11 +70,11 @@ pre {
   padding: 8px 0px;
 }
 
-.gl { 
+.gl {
   background: #fafafa;
   border-right: 1px solid #ddd;
   color: #999;
-  
+
   /* Stop line numbers being visually selected */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -92,5 +91,5 @@ pre {
 pre.line-numbers {
   width: 50px;
   text-align: right;
-  
+
 }
