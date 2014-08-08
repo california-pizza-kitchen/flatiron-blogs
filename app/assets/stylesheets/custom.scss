@@ -1,3 +1,9 @@
+#page-content-wrapper {
+  padding-top: 0px;
+  max-width: 980px;
+  background-color: white;
+}
+
 #forward-slashes {
   color: cyan;
   font-weight: bold;
@@ -14,7 +20,10 @@
 .sidebar-nav li a {
     font-family: "Merriweather", "Georgia", "Serif";
     color: #111;
-    font-size: 16px
+    font-size: 16px;
+    text-indent: 0px;
+    padding: 10px;
+    line-height: 30px;
 }
 
 .sidebar-nav li a:hover {
@@ -34,4 +43,11 @@ a {
     text-decoration: none;
     color: #507292;
   }
+}
+
+h1.title {
+  font-size: 34px;
+  line-height: 42px;
+  font-family: "Merriweather", "Georgia", serif;
+  color: #4C4C4C;
 }
