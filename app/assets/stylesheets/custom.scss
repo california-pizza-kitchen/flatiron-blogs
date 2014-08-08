@@ -1,3 +1,20 @@
+@import "bootstrap";
+/* Some Style from the Bootstrap Default Theme */
+body {
+  padding-top: 50px;
+  padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
 #page-content-wrapper {
   max-width: 980px;
   background-color: white;
@@ -53,9 +70,6 @@ h1.title {
 
 pre {
   background-color: white;
-}
-
-pre {
   border: solid 1px #ddd;
   background: #fff;
   line-height: 23px;
@@ -64,6 +78,16 @@ pre {
   overflow-x: auto;
   word-break: inherit;
   word-wrap: inherit;
+}
+
+pre code {
+  white-space: pre;
+  overflow-x: scroll;
+}
+
+/* This is so important, otherwise a line of code that is too long will stretch the page */
+.highlight {
+  overflow-x: auto;
 }
 
 .highlight td {
@@ -91,5 +115,4 @@ pre {
 pre.line-numbers {
   width: 50px;
   text-align: right;
-
 }
