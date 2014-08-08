@@ -33,5 +33,6 @@ Entry.prototype.formattedDateTime = function() {
       minutes = this.publishedDate.getMinutes(),
       amPm = this.publishedDate.getHours() < 12 ? "AM" : "PM";
   hours = hours === 0 ? 12 : hours;
+  minutes = minutes < 10 ? "0" + minutes : minutes;
   return hours + ":" + minutes + " " + amPm + ", " + this.publishedDate.toLocaleDateString();
 }
