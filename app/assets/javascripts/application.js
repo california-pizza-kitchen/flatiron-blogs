@@ -23,15 +23,19 @@
 var sidebarController,
     entriesController,
     semestersController,
-    bloggersController;
+    semestersSidebarController,
+    bloggersController,
+    bloggersSidebarController;
 
 $(function() {
   sidebarController = new SidebarController();
   entriesController = new EntriesController();
   semestersController = new SemestersController();
+  semestersSidebarController = new SemestersSidebarController();
   bloggersController = new BloggersController();
+  bloggersSidebarController = new BloggersSidebarController();
 
-  sidebarController.initialize();
+  // sidebarController.initialize();
 
   $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 });
