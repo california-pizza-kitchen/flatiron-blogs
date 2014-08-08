@@ -35,7 +35,7 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
 
 EntriesController.prototype.appendEntry = function(jsonEntry) {
   var entry = new Entry(jsonEntry);
-  this.$pageContentWrapper.append(HandlebarsTemplates['entries/entry_show'](entry));
+  this.$pageContentWrapper.append(HandlebarsTemplates['entries/entryShow'](entry));
   this.displayedEntries++;
 }
 
