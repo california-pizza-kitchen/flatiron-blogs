@@ -1,6 +1,8 @@
 <script type="text/javascript">
   $(function() {
+    sidebarController.resetEntries();
     entriesController.disableScroll();
+    bloggersSidebarController.initialize();
     bloggersController.fetchSemesters();
   });
 </script>

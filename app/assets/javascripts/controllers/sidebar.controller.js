@@ -12,8 +12,12 @@ SidebarController.prototype.initialize = function() {
   this.selectClickedEntry();
 }
 
-SidebarController.prototype.reset = function() {
-
+SidebarController.prototype.resetEntries = function() {
+  // $("#page-content-wrapper").unbind('inview');
+  this.$sidebar.find('a').removeClass('nav-active');
+  this.$sidebar.find('li').remove();
+  this.arrayOfSlugs = [];
+  this.displayedEntries = 0;
 }
 
 SidebarController.prototype.fetchEntries = function() {
