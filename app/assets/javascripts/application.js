@@ -22,13 +22,15 @@
 var sidebarController,
     entriesController,
     semestersController,
-    bloggersController;
+    bloggersController,
+    bloggersSidebarController;
 
 $(function() {
   sidebarController = new SidebarController();
   entriesController = new EntriesController();
   semestersController = new SemestersController();
   bloggersController = new BloggersController();
+  bloggersSidebarController = new BloggersSidebarController();
 
   // sidebarController.initialize();
 

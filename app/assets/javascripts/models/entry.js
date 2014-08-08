@@ -7,6 +7,9 @@ function Entry(json) {
   this.content = json["content"];
   this.jsonUrl = json["_self"];
   this.slug = json["slug"];
+  if (json["name"]) {
+    this.name = json["name"];
+  }
   if (json["blogger"]) {
     this.blogger = new Blogger(json["blogger"]);
   }

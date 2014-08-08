@@ -7,15 +7,13 @@ function SidebarController () {
 }
 
 SidebarController.prototype.initialize = function() {
-  console.log('initializing...')
   this.fetchEntries();
   this.selectEntryBeingRead();
   this.selectClickedEntry();
 }
 
 SidebarController.prototype.resetEntries = function() {
-  console.log('resetting entries...');
-  $("#page-content-wrapper").unbind('inview');
+  // $("#page-content-wrapper").unbind('inview');
   this.$sidebar.find('a').removeClass('nav-active');
   this.$sidebar.find('li').remove();
   this.arrayOfSlugs = [];
@@ -51,14 +49,9 @@ SidebarController.prototype.fetchNextEntriesApiUrl = function() {
 SidebarController.prototype.selectEntryBeingRead = function() {
   var sidebar = this.$sidebar,
       slug;
-  console.log('trying to select the entry being read...');
   $( '#page-content-wrapper' ).on('inview', 'div.entry', function(event, isInView) {
-    console.log('inside the inner inview function...');
     if (isInView) {
-      console.log('it is in view...');
       slug = $(this).attr('id');
-      console.log('by "it" I mean ' + slug);
-      console.log(sidebar);
       sidebar.find('a').removeClass('nav-active');
       sidebar.find('a[href="' + slug + '"]').addClass('nav-active');
     }
