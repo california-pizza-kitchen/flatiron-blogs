@@ -3,7 +3,7 @@ function Entry(json) {
   this.blogUrl = json["blog_url"];
   this.magazineUrl = json["url"];
   this.schoolSession = json["school_session"];
-  this.publishedDate = json["published_date"];
+  this.publishedDate = new Date(json["published_date"]);
   this.content = json["content"];
   this.jsonUrl = json["_self"];
   this.slug = json["slug"];
@@ -20,4 +20,8 @@ Entry.prototype.addTags = function(jsonTags) {
     return new Tag(jsonTag);
   });
   return tags;
+}
+
+Entry.prototype.formattedDate = function() {
+  return this.publishedDate.toLocaleDateString();
 }
