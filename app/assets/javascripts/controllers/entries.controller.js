@@ -30,7 +30,7 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
     that.appendEntry(jsonEntry);
   });
   // Re-enable scroll listening
-  this.enableScroll();
+  this.listenForScroll();
 }
 
 EntriesController.prototype.appendEntry = function(jsonEntry) {
@@ -50,18 +50,14 @@ EntriesController.prototype.fetchNextEntriesApiUrl = function() {
 EntriesController.prototype.listenForScroll = function() {
   var that = this,
       distanceFromBottom;
-  $(window).scroll(function() {
+  $(window).scroll(throttle(function() {
     distanceFromBottom = that.$pageContentWrapper.height() - window.pageYOffset;
     if (distanceFromBottom < that.threshold) {
       // Disable scroll listening for the duration of fetching and appending new data
-      that.disableScroll();
+      $(this).off("scroll");
       that.fetchEntries();
     }
-  });
-}
-
-EntriesController.prototype.enableScroll = function() {
-  this.listenForScroll();
+  }, 500));
 }
 
 EntriesController.prototype.disableScroll = function() {
