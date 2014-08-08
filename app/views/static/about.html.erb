@@ -1,0 +1,18 @@
+<div id="about">
+  <h1>Flatiron Blogs</h1>
+  <p class="first">
+    This site is a recreation of the <a href="http://magazine.flatironschool.com">Flatiron Magazine project</a> <a href="https://github.com/kyleshike/fl_mag">(github page)</a> by <a href="https://github.com/kyleshike">Kyle Shike</a> and <a href="https://github.com/PHJ45"> Patrick Janson</a>.  The project collects all blog posts from Flatiron students, and presents them in one place.
+  </p>
+  <p class="second">
+    We wanted to build our own frontend for displaying the blog posts, something in the style of an infinite-scrolling site like <a href="http://qz.com">Quartz</a>.  We forked the Flatiron Magazine project and built in a JSON API (<b>LINK WILL GO HERE</b>).  Using this API, we created this app using javascript controllers to fire AJAX requests to the API, and bundle the response into javascript models and display those models using <a href="http://handlebarsjs.com/">Handlebars</a>.  Our server uses the <a href="https://github.com/rails/pjax_rails">pjax_rails gem</a> to handle all requests as <a href="http://pjax.heroku.com">PJAX</a> requests.
+  </p>
+  <p class="authors">
+    This app and the Flatiron Magazine API were built by <a href="https://github.com/callahanchris">Chris Callahan</a> (<a href="https://twitter.com/_c_cal">@_c_cal</a>) and <a href="https://github.com/pcrglennon">Peter Glennon</a> (<a href="https://twitter.com/pcrglennon">@pcrglennon</a>).
+  </p>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    entriesController.disableScroll();
+  });
+</script>
