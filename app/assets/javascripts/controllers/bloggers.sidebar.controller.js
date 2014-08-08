@@ -6,7 +6,6 @@ function BloggersSidebarController () {
 
 BloggersSidebarController.prototype.initialize = function() {
   this.fetchEntries();
-  this.selectEntryBeingRead();
   this.selectClickedEntry();
 }
 
@@ -30,18 +29,6 @@ BloggersSidebarController.prototype.appendEntries = function(jsonEntries) {
     entry = new Entry(jsonEntry);
     that.$sidebar.append(HandlebarsTemplates['bloggers/bloggers_sidebar'](entry));
     that.arrayOfSlugs.push(entry.slug);
-  });
-}
-
-BloggersSidebarController.prototype.selectEntryBeingRead = function() {
-  var sidebar = this.$sidebar,
-      slug;
-  $( '#page-content-wrapper' ).on('inview', 'div.entry', function(event, isInView) {
-    if (isInView) {
-      slug = $(this).attr('id');
-      sidebar.find('a').removeClass('nav-active');
-      sidebar.find('a[href="' + slug + '"]').addClass('nav-active');
-    }
   });
 }
 
