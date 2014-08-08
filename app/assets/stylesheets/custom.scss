@@ -51,3 +51,46 @@ h1.title {
   font-family: "Merriweather", "Georgia", serif;
   color: #4C4C4C;
 }
+
+pre {
+  background-color: white;
+}
+
+pre {
+  border: solid 1px #ddd;
+  background: #fff;
+  line-height: 23px;
+  margin-bottom: 30px;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: inherit;
+  word-wrap: inherit;
+}
+
+.highlight td {
+  padding: 8px 0px;
+}
+
+.gl { 
+  background: #fafafa;
+  border-right: 1px solid #ddd;
+  color: #999;
+  
+  /* Stop line numbers being visually selected */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.gutter .highlight {
+  width: 50px;
+}
+
+pre.line-numbers {
+  width: 50px;
+  text-align: right;
+  
+}
