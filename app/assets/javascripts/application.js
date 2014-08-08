@@ -30,7 +30,7 @@ $(function() {
   semestersController = new SemestersController();
   bloggersController = new BloggersController();
 
-  sidebarController.initialize();
+  // sidebarController.initialize();
 
   $(document).pjax('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])', '[data-pjax-container]');
 });
