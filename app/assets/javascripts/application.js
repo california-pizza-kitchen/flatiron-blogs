@@ -22,6 +22,7 @@
 var sidebarController,
     entriesController,
     semestersController,
+    semestersSidebarController,
     bloggersController,
     bloggersSidebarController;
 
@@ -29,6 +30,7 @@ $(function() {
   sidebarController = new SidebarController();
   entriesController = new EntriesController();
   semestersController = new SemestersController();
+  semestersSidebarController = new SemestersSidebarController();
   bloggersController = new BloggersController();
   bloggersSidebarController = new BloggersSidebarController();
 
