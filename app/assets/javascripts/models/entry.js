@@ -22,6 +22,9 @@ Entry.prototype.addTags = function(jsonTags) {
   return tags;
 }
 
+Entry.prototype.timeAgo = function() {
+  return jQuery.timeago(this.publishedDate);
+}
 Entry.prototype.formattedDateTime = function() {
   var hours = this.publishedDate.getHours() % 12,
       minutes = this.publishedDate.getMinutes(),
