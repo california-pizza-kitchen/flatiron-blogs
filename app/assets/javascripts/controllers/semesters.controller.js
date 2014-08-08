@@ -1,6 +1,6 @@
 function SemestersController () {
   this.$pageContentWrapper = $('#page-content-wrapper');
-  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions';
+  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?concise=true';
 }
 
 SemestersController.prototype.fetchSemesters = function() {
