@@ -61,12 +61,18 @@ a {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 h1.title {
   font-size: 34px;
   line-height: 42px;
   font-family: "Merriweather", "Georgia", serif;
   color: #4C4C4C;
 }
+
+/* Embedded code styling */
 
 pre {
   background-color: white;
