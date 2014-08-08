@@ -27,7 +27,7 @@ SemestersSidebarController.prototype.appendEntries = function(jsonEntries) {
       entry;
   $.map(jsonEntries, function(jsonEntry, i) {
     entry = new Entry(jsonEntry);
-    that.$sidebar.append(HandlebarsTemplates['semesters/semester_sidebar'](entry));
+    that.$sidebar.append(HandlebarsTemplates['semesters/semesterSidebar'](entry));
     that.arrayOfSlugs.push(entry.slug);
   });
 }

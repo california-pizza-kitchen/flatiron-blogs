@@ -27,7 +27,7 @@ BloggersSidebarController.prototype.appendEntries = function(jsonEntries) {
       entry;
   $.map(jsonEntries, function(jsonEntry, i) {
     entry = new Entry(jsonEntry);
-    that.$sidebar.append(HandlebarsTemplates['bloggers/bloggers_sidebar'](entry));
+    that.$sidebar.append(HandlebarsTemplates['bloggers/bloggerSidebar'](entry));
     that.arrayOfSlugs.push(entry.slug);
   });
 }
