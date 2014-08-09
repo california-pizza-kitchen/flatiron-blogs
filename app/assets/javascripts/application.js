@@ -33,7 +33,7 @@ $(function() {
   semestersController = new SemestersController();
   semestersSidebarController = new SemestersSidebarController();
   bloggersController = new BloggersController();
-  bloggersSidebarController = new BloggersSidebarController();
+  bloggersSidebarController = new SemestersSidebarController();
 
   // sidebarController.initialize();
 

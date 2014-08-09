@@ -2,6 +2,7 @@ function SemestersSidebarController () {
   this.$sidebar = $(".sidebar-nav");
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?concise=true';
   this.arrayOfSlugs = [];
+  this.template = 'semesters/semesterSidebar';
 }
 
 SemestersSidebarController.prototype.initialize = function() {
@@ -27,7 +28,7 @@ SemestersSidebarController.prototype.appendEntries = function(jsonEntries) {
       entry;
   $.map(jsonEntries, function(jsonEntry, i) {
     entry = new Entry(jsonEntry);
-    that.$sidebar.append(HandlebarsTemplates['semesters/semesterSidebar'](entry));
+    that.$sidebar.append(HandlebarsTemplates[that.template](entry));
     that.arrayOfSlugs.push(entry.slug);
   });
 }

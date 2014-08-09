@@ -2,6 +2,7 @@
   $(function() {
     sidebarController.resetEntries();
     entriesController.disableScroll();
+    bloggersSidebarController.template = 'bloggers/bloggerSidebar';
     bloggersSidebarController.initialize();
     bloggersController.fetchSemesters();
   });
