@@ -1,13 +1,15 @@
 function EntriesController() {
   this.$pageContentWrapper = $('#page-content-wrapper');
   this.displayedEntries = 0;
-  this.entriesToFetch = 5;
+  this.entriesToFetch = 1;
   this.threshold = 1000;
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries';
+  this.viewedEntries = [];
 }
 
 EntriesController.prototype.resetEntries = function() {
   this.displayedEntries = 0;
+  this.viewedEntries = [];
 }
 
 EntriesController.prototype.fetchEntries = function() {
@@ -50,16 +52,21 @@ EntriesController.prototype.fetchNextEntriesApiUrl = function() {
 EntriesController.prototype.listenForScroll = function() {
   var that = this,
       distanceFromBottom;
-  $(window).scroll(throttle(function() {
-    distanceFromBottom = that.$pageContentWrapper.height() - window.pageYOffset;
-    if (distanceFromBottom < that.threshold) {
-      // Disable scroll listening for the duration of fetching and appending new data
-      $(this).off("scroll");
-      that.fetchEntries();
+  this.$pageContentWrapper.on('inview', 'div.entry', throttle(function(e, isInView, inViewX, inViewY) {
+    if (isInView && inViewY === "bottom") {
+      var $entry = $(this),
+          entryId = $entry.attr('id');
+      if (that.viewedEntries.indexOf(entryId) < 0) { // Entry has not yet been viewed
+        that.disableScroll(); // Disable scroll listening until DOM modification is done
+        that.viewedEntries.push(entryId);
+        that.fetchEntries();
+      }
+
+      sidebarController.highlight(entryId);
     }
-  }, 500));
+  }, 400));
 }
 
 EntriesController.prototype.disableScroll = function() {
-  $(window).off('scroll');
+  this.$pageContentWrapper.off('inview');
 }

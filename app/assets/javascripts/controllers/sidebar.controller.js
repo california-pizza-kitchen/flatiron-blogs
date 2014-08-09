@@ -8,13 +8,10 @@ function SidebarController () {
 
 SidebarController.prototype.initialize = function() {
   this.fetchEntries();
-  this.selectEntryBeingRead();
   this.selectClickedEntry();
 }
 
 SidebarController.prototype.resetEntries = function() {
-  // $("#page-content-wrapper").unbind('inview');
-  this.$sidebar.find('a').removeClass('nav-active');
   this.$sidebar.find('li').remove();
   this.arrayOfSlugs = [];
   this.displayedEntries = 0;
@@ -46,22 +43,15 @@ SidebarController.prototype.fetchNextEntriesApiUrl = function() {
   return url;
 }
 
-SidebarController.prototype.selectEntryBeingRead = function() {
-  var sidebar = this.$sidebar,
-      slug;
-  $( '#page-content-wrapper' ).on('inview', 'div.entry', function(event, isInView) {
-    if (isInView) {
-      slug = $(this).attr('id');
-      sidebar.find('a').removeClass('nav-active');
-      sidebar.find('a[href="' + slug + '"]').addClass('nav-active');
-    }
-  });
+SidebarController.prototype.highlight = function(id) {
+  this.$sidebar.find('li a').removeClass('nav-active');
+  this.$sidebar.find('li a[href="/' + id + '"]').addClass('nav-active');
 }
 
 SidebarController.prototype.selectClickedEntry = function() {
   var that = this;
   this.$sidebar.on('click', 'a', function() {
-    that.$sidebar.find( 'a' ).removeClass( 'nav-active' );
+    that.$sidebar.find( 'li a' ).removeClass( 'nav-active' );
     $(this).addClass( 'nav-active' );
   });
 }
