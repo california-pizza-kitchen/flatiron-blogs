@@ -26,6 +26,7 @@ EntriesController.prototype.fetchEntry = function(slug) {
   var that = this;
   $.get(this.baseApiUrl + '/' + slug, function(data) {
     that.appendEntry(data);
+    that.showNextEntry();
   });
 }
 
