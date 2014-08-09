@@ -1,13 +1,15 @@
 function EntriesController() {
   this.$pageContentWrapper = $('#page-content-wrapper');
-  this.displayedEntries = 0;
-  this.entriesToFetch = 1;
+  this.entriesToFetch = 4;
   this.threshold = 1000;
   this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/entries';
+  this.fetchedEntries = 0;
+  this.displayedEntries = 0;
   this.viewedEntries = [];
 }
 
 EntriesController.prototype.resetEntries = function() {
+  this.fetchedEntries = 0;
   this.displayedEntries = 0;
   this.viewedEntries = [];
 }
@@ -16,6 +18,7 @@ EntriesController.prototype.fetchEntries = function() {
   var that = this;
   $.get(this.fetchNextEntriesApiUrl(), function(data) {
     that.appendEntries(data);
+    that.showNextEntry();
   }, 'json');
 }
 
@@ -36,8 +39,14 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
 }
 
 EntriesController.prototype.appendEntry = function(jsonEntry) {
-  var entry = new Entry(jsonEntry);
-  this.$pageContentWrapper.append(HandlebarsTemplates['entries/entryShow'](entry));
+  var entry = new Entry(jsonEntry),
+      htmlEntry = HandlebarsTemplates['entries/entryShow'](entry);
+  this.$pageContentWrapper.append($(htmlEntry).hide());
+  this.fetchedEntries++;
+}
+
+EntriesController.prototype.showNextEntry = function() {
+  this.$pageContentWrapper.find('div.entry:hidden:first').show();
   this.displayedEntries++;
 }
 
@@ -57,9 +66,13 @@ EntriesController.prototype.listenForScroll = function() {
       var $entry = $(this),
           entryId = $entry.attr('id');
       if (that.viewedEntries.indexOf(entryId) < 0) { // Entry has not yet been viewed
-        that.disableScroll(); // Disable scroll listening until DOM modification is done
-        that.viewedEntries.push(entryId);
-        that.fetchEntries();
+        if (that.displayedEntries < that.fetchedEntries) {
+          that.showNextEntry();
+        } else {
+          that.disableScroll(); // Disable scroll listening until DOM modification is done
+          that.viewedEntries.push(entryId);
+          that.fetchEntries();
+        }
       }
 
       history.pushState(null, null, "/" + entryId);
