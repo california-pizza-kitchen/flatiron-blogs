@@ -3,5 +3,7 @@
     entriesController.disableScroll();
     entriesController.resetEntries();
     entriesController.fetchEntry("<%= @slug %>");
+    sidebarController.resetEntries();
+    sidebarController.initialize();
   });
 </script>
