@@ -57,3 +57,4 @@ gem "bootstrap-sass", "~> 3.1.1"
 gem "airbrake"
 gem "pjax_rails"
 gem 'handlebars_assets'
+gem 'whenever', :require => false
