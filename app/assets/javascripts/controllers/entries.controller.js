@@ -79,7 +79,7 @@ EntriesController.prototype.listenForScroll = function() {
       history.pushState(null, null, "/" + entryId);
       sidebarController.highlight(entryId);
     }
-  }, 400));
+  }, 200));
 }
 
 EntriesController.prototype.disableScroll = function() {
