@@ -1,6 +1,6 @@
 function BloggersController() {
   this.$pageContentWrapper = $('#page-content-wrapper');
-  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?bloggers=true';
+  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?bloggers=true&limit=20';
 }
 
 BloggersController.prototype.fetchSemesters = function() {
