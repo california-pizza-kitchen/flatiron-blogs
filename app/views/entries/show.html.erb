@@ -3,7 +3,14 @@
     entriesController.disableScroll();
     entriesController.resetEntries();
     entriesController.fetchEntry("<%= @slug %>");
-    sidebarController.resetEntries();
-    sidebarController.initialize();
+    if (semestersShowSidebarController.arrayOfSlugs.length < 1 && sidebarController.arrayOfSlugs.length === 0) {
+      console.log('resetting sem show sidebar');
+      semestersShowSidebarController.resetEntries();
+      semestersShowSidebarController.initialize();
+    } else if (semestersShowSidebarController.arrayOfSlugs.length < 1 && sidebarController.arrayOfSlugs.length === 0) {
+      console.log('resetting sidebar');
+      sidebarController.resetEntries();
+      sidebarController.initialize();
+    }
   });
 </script>

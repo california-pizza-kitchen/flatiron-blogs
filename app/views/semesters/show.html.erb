@@ -1,12 +1,13 @@
 <script type="text/javascript">
   $(function() {
     entriesController.disableScroll();
+    sidebarController.resetEntries();
     semestersSidebarController.resetEntries();
     var semesterEntriesController = new EntriesController();
     semesterEntriesController.baseApiUrl = "http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions/" + "<%= @slug %>" + "/entries";
     semesterEntriesController.listenForScroll();
     semesterEntriesController.fetchEntries();
-    var semestersShowSidebarController = new SidebarController();
+    semestersShowSidebarController = new SidebarController();
     semestersShowSidebarController.baseApiUrl = "http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions/" + "<%= @slug %>" + "/entries"
     semestersShowSidebarController.initialize();
   });

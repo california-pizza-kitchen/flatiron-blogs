@@ -19,6 +19,7 @@ EntriesController.prototype.fetchEntries = function() {
   $.get(this.fetchNextEntriesApiUrl(), function(data) {
     that.appendEntries(data);
     that.showNextEntry();
+    that.showNextEntry(); // Show two entries
   }, 'json');
 }
 
