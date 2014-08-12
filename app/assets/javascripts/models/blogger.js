@@ -1,6 +1,7 @@
 function Blogger(json) {
   this.name = json["name"];
-  this.schoolSession = json["school_session"];
+  this.semesterSlug = json["school_session_slug"];
+  this.semesterName = json["school_session_name"];
   this.numberOfEntries = json["number_of_entries"];
   this.blogUrl = json["blog_url"];
   this.magazineUrl = json["url"];

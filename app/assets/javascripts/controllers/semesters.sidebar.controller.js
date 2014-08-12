@@ -1,6 +1,6 @@
 function SemestersSidebarController () {
   this.$sidebar = $(".sidebar-nav");
-  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?concise=true';
+  this.baseApiUrl = 'http://flatiron-magazine-cpk.herokuapp.com/api/v0/school_sessions?concise=true&limit=20';
   this.arrayOfSlugs = [];
   this.template = 'semesters/semesterSidebar';
 }
