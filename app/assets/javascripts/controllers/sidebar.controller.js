@@ -29,9 +29,11 @@ SidebarController.prototype.appendEntries = function(jsonEntries) {
       entry;
   $.map(jsonEntries, function(jsonEntry, i) {
     entry = new Entry(jsonEntry);
-    that.$sidebar.append(HandlebarsTemplates['entries/entrySidebar'](entry));
-    that.arrayOfSlugs.push(entry.slug);
-    that.displayedEntries++;
+    if (entry.slug !== "premature-ajaxulation") {
+      that.$sidebar.append(HandlebarsTemplates['entries/entrySidebar'](entry));
+      that.arrayOfSlugs.push(entry.slug);
+      that.displayedEntries++;
+    }
   });
 }
 

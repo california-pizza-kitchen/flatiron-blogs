@@ -43,8 +43,10 @@ EntriesController.prototype.appendEntries = function(jsonEntries) {
 EntriesController.prototype.appendEntry = function(jsonEntry) {
   var entry = new Entry(jsonEntry),
       htmlEntry = HandlebarsTemplates['entries/entryShow'](entry);
-  this.$pageContentWrapper.append($(htmlEntry).hide());
-  this.fetchedEntries++;
+  if (entry.slug !== "premature-ajaxulation") {
+    this.$pageContentWrapper.append($(htmlEntry).hide());
+    this.fetchedEntries++;
+  }
 }
 
 EntriesController.prototype.showNextEntry = function() {
