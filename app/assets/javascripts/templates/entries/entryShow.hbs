@@ -11,5 +11,14 @@
   </div>
   <p class="content">{{{content}}}</p>
 
+  <div class="tags">
+    <h3>Tags</h3>
+    <ul class="tags-list list-inline">
+      {{#each tags}}
+        <li class="tag well well-sm">{{tag}}</li>
+      {{/each}}
+    </ul>
+  </div>
+
   <h4 class="originally-published">Originally published here: <a href="{{blogUrl}}">{{blogUrl}}</a></h5>
 </div>
